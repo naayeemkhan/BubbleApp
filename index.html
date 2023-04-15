@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Circle and Arrow</title>
+	<style>
+		.container {
+			border: 2px solid black;
+			display: flex;
+			justify-content: space-around;
+			padding: 10px;
+			width: 500px;
+			height: 200px;
+			margin:auto ;
+		}
+		
+		.circles {
+			display: inline-flex;
+			flex-direction: column;
+		}
+		
+		.circles div {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			margin-bottom: 10px;
+		}
+		
+		.circles .red {
+			background-color: #f9f105;
+		}
+		
+		.circles .green {
+			background-color: rgb(3, 23, 247);
+		}
+		
+		.circles .blue {
+			background-color: rgb(255, 0, 0);
+		}
+		
+		.circles .yellow {
+			background-color: rgb(6, 245, 22);
+		}
+		
+		.arrows {
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.arrows img {
+			width: 50px;
+			height: 50px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			
+			
+		}
+		
+		.red-arrow {
+			transform: translateX(100%);
+		}
+		
+		.green-arrow {
+			transform: translateX(100%);
+		}
+		
+		.blue-arrow {
+			transform: translateX(100%);
+		}
+		
+		.yellow-arrow {
+			transform: translateX(100%);
+		}
+		
+		.active {
+			transform: translateX(calc(-400% + 2px));
+		}
+
+		.button{
+			text-align:center;
+			margin-top: 10px;
+			}
+	</style>
+</head>
+<body>
+	<center><h1>Bubble App</h1></center>
+	<div class="container">
+		<div class="circles">
+			<div class="red"></div>
+			<div class="green"></div>
+			<div class="blue"></div>
+			<div class="yellow"></div>
+		</div>
+
+		<div class="arrows">
+			<img class="red-arrow" src="arrow.png" alt="red-arrow">
+			<img class="green-arrow" src="arrow.png" alt="green-arrow">
+			<img class="blue-arrow" src="arrow.png" alt="blue-arrow">
+			<img class="yellow-arrow" src="arrow.png" alt="yellow-arrow">
+		</div>
+	</div>
+	<div class="button"><button id="reset-button">Reset</button></div>
+
+	<script>
+	let circles = document.querySelectorAll('.circles div');
+let arrows = document.querySelectorAll('.arrows img');
+
+circles.forEach((circle, index) => {
+  circle.addEventListener('click', () => {
+    arrows.forEach(arrow => {
+      arrow.classList.remove('active');
+    });
+    arrows[index].classList.add('active');
+
+    // get the clicked circle
+    let clickedCircle = circles[index];
+
+    // change the color of the circle to gray after 0.4ms second
+    setTimeout(() => {
+      clickedCircle.style.backgroundColor = 'gray';
+    }, 400);
+		
+		
+  });
+});
+
+
+//
+let resetButton = document.getElementById('reset-button');
+
+resetButton.addEventListener('click', () => {
+  circles.forEach(circle => {
+    circle.style.backgroundColor = '';
+		});
+		arrows.forEach(arrow => {
+				arrow.classList.remove('active');
+			});
+});
+
+
+
+
+</script>
+</body>
+</html>
